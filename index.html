@@ -92,7 +92,7 @@
         </section>
 
         <section id="input-form">
-            <form method="#" action="#">
+            <form method="post" action="#" id="editProfileForm">
                 <div class="form">
                     <label>Nama</label>
                     <input id="inpName" type="text" name="nama" placeholder="masukkan nama anda">
@@ -122,7 +122,7 @@
                     <input id="inpEmail" type="email" name="email">
                 </div>            
                 <div class="form">
-                    <input onclick="simpanForm()" type="submit" name="submit" value="SUBMIT" class="bg-green">
+                    <input onclick="simpanForm(event)" type="submit" name="submit" value="SUBMIT" class="bg-green">
                 </div>
             </form>            
         </section>
@@ -153,34 +153,43 @@
         <script>
             var formMenu = document.getElementById("input-form");
             formMenu.style.display="none";
-            
-            function editForm(){
-                if(formMenu.style.display === "none"){
+
+            function editForm() 
+            {                
+                if (formMenu.style.display === "none") {
+                    document.getElementById("inpName").value = document.getElementById("pName").innerHTML;
+                    document.getElementById("inpRole").value = document.getElementById("pRole").innerHTML;
+                    document.getElementById("inpAvailability").value = document.getElementById("pAvailable").innerHTML;
+                    document.getElementById("inpUsia").value = document.getElementById("pAge").innerHTML;
+                    document.getElementById("inpLokasi").value = document.getElementById("pLocation").innerHTML;
+                    document.getElementById("inpYears").value = document.getElementById("pExperience").innerHTML;
+                    document.getElementById("inpEmail").value = document.getElementById("pEmail").innerHTML;
                     formMenu.style.display = "block";
-                }else{
-                    formMenu.style.display = "none";
-                }
-
-                var name = document.getElementById("pName").innerHTML;
-                var role = document.getElementById("pRole").innerHTML;
-                var available = document.getElementById("pAvailable").innerHTML;
-                var usia = document.getElementById("pAge").innerHTML;
-                var lokasi = document.getElementById("pLocation").innerHTML;
-                var experience= document.getElementById("pExperience").innerHTML;
-                var email = document.getElementById("pEmail").innerHTML;
-
-                document.getElementById("inpName").value=name;
-                document.getElementById("inpRole").value=role;
-                document.getElementById("inpAvailability").value=available;
-                document.getElementById("inpUsia").value=usia;
-                document.getElementById("inpLokasi").value=lokasi;
-                document.getElementById("inpYears").value=experience;
-                document.getElementById("inpEmail").value=email;
-
+                } else {
+                        formMenu.style.display = "none";
+                    }
             }
-            
-            function simpanForm(){
 
+            function simpanForm(event) 
+            {
+                var formMenu = document.getElementById("input-form");
+                formMenu.style.display = "none";
+                event.preventDefault();
+                var newName = document.getElementById("inpName").value;
+                var newRole = document.getElementById("inpRole").value;
+                var newAvailable = document.getElementById("inpAvailability").value;
+                var newUsia = document.getElementById("inpUsia").value;
+                var newLokasi = document.getElementById("inpLokasi").value;
+                var newExperience = document.getElementById("inpYears").value;
+                var newEmail = document.getElementById("inpEmail").value;
+
+                document.getElementById("pName").innerHTML = newName;
+                document.getElementById("pRole").innerHTML = newRole;
+                document.getElementById("pAvailable").innerHTML = newAvailable;
+                document.getElementById("pAge").innerHTML = newUsia;
+                document.getElementById("pLocation").innerHTML = newLokasi;
+                document.getElementById("pExperience").innerHTML = newExperience;
+                document.getElementById("pEmail").innerHTML = newEmail;
             }
 
             function showMenu()
@@ -197,12 +206,5 @@
                 }
             }
         </script>
-
-
-
-
-
-
-
     </body>
 </html>
